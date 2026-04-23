@@ -9,8 +9,6 @@ const form = reactive({
 })
 
 const loading = ref(false)
-const successMessage = ref(false)
-
 const toast = ref({
   show: false,
   message: '',
@@ -27,14 +25,17 @@ const showToast = (message, type = 'success') => {
 
 const descricaoError = computed(() => {
   if (form.descricao && form.descricao.length > 500) {
-    return 'Máximo 500 caracteres'
+    return 'Maximo 500 caracteres'
   }
   return ''
 })
 
 const enviar = async () => {
+  console.log('enviar acionado')
+  console.log('form atual:', { ...form })
+
   if (!form.descricao || form.descricao.trim() === '') {
-    showToast('Preencha a descrição', 'error')
+    showToast('Preencha a descricao', 'error')
     return
   }
 
@@ -48,6 +49,8 @@ const enviar = async () => {
       }
     })
 
+    console.log('resposta da API:', response)
+
     if (response.success) {
       showToast(`Enviado! Protocolo: ${response.protocolo}`, 'success')
 
@@ -60,74 +63,67 @@ const enviar = async () => {
     } else {
       showToast(response.message || 'Erro ao salvar', 'error')
     }
-
   } catch (error) {
     console.error(error)
-    showToast(error?.data?.message || 'Erro ao enviar', 'error')
+    showToast(error?.data?.message || error?.message || 'Erro ao enviar', 'error')
   } finally {
     loading.value = false
   }
 }
 
 const tipoOptions = [
-  { label: 'Informação', value: 'informacao', icon: 'i-lucide-info' },
+  { label: 'Informacao', value: 'informacao', icon: 'i-lucide-info' },
   { label: 'Elogio', value: 'elogio', icon: 'i-lucide-star' },
-  { label: 'Sugestão', value: 'sugestao', icon: 'i-lucide-lightbulb' },
-  { label: 'Reclamação', value: 'reclamacao', icon: 'i-lucide-alert-circle' }
+  { label: 'Sugestao', value: 'sugestao', icon: 'i-lucide-lightbulb' },
+  { label: 'Reclamacao', value: 'reclamacao', icon: 'i-lucide-alert-circle' }
 ]
 </script>
 
 <template>
   <div class="min-h-[calc(100vh-8rem)] bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors">
-
     <div class="px-4 py-6 sm:px-6 sm:py-8 max-w-2xl mx-auto">
-
-      <!-- Título -->
       <div class="mb-8">
         <h1 class="text-2xl sm:text-3xl font-bold mb-2">
           Manifeste-se
         </h1>
         <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
-          Sua opinião é importante para nós. Compartilhe comentários, sugestões ou elogios sobre nossos serviços.
+          Sua opiniao e importante para nos. Compartilhe comentarios, sugestoes ou elogios sobre nossos servicos.
         </p>
       </div>
 
-      <!-- Form -->
       <form @submit.prevent="enviar" class="space-y-6">
-
-        <!-- Tipo -->
         <div>
           <label class="block text-sm font-semibold mb-3">
-            Tipo de Manifestação
+            Tipo de Manifestacao
           </label>
           <div class="grid grid-cols-2 gap-3 sm:gap-4">
-            <label
+            <button
               v-for="tipo in tipoOptions"
               :key="tipo.value"
+              type="button"
+              @click="form.tipo = tipo.value"
               :class="[
-                'flex flex-col items-center gap-2 p-4 rounded-lg border-2 cursor-pointer transition-all',
+                'flex flex-col items-center gap-2 p-4 rounded-lg border-2 cursor-pointer transition-all text-left',
                 form.tipo === tipo.value
                   ? 'border-blue-500 bg-blue-50 dark:bg-blue-950 dark:border-blue-400'
                   : 'border-slate-200 dark:border-slate-700'
               ]"
             >
-              <input type="radio" :value="tipo.value" v-model="form.tipo" class="sr-only" />
               <i :class="tipo.icon" class="text-xl"></i>
               <span class="text-xs font-medium text-center">
                 {{ tipo.label }}
               </span>
-            </label>
+            </button>
           </div>
         </div>
 
-        <!-- Descrição -->
         <div>
           <label class="block text-sm font-semibold mb-2">
-            Descrição *
+            Descricao *
           </label>
           <textarea
             v-model="form.descricao"
-            placeholder="Descreva sua manifestação..."
+            placeholder="Descreva sua manifestacao..."
             class="w-full h-32 p-4 rounded-lg border bg-white dark:bg-slate-900"
             maxlength="500"
           />
@@ -136,31 +132,25 @@ const tipoOptions = [
           </div>
         </div>
 
-        <!-- Anônimo -->
         <div class="flex items-center gap-3">
           <UCheckbox v-model="form.anonimo" />
           <label class="text-sm">
-            Não quero me identificar
+            Nao quero me identificar
           </label>
         </div>
 
-        <!-- Dados pessoais -->
         <div v-if="!form.anonimo" class="space-y-4">
-
           <UInput v-model="form.nome" placeholder="Nome" />
           <UInput v-model="form.telefone" placeholder="Telefone" />
           <UInput v-model="form.email" placeholder="Email" />
-
         </div>
 
-        <!-- Botões -->
         <div class="flex flex-col gap-3 pt-4">
-
           <UButton
             type="submit"
             block
             :loading="loading"
-            :disabled="loading || !form.descricao || descricaoError"
+            :disabled="loading || !form.descricao || !!descricaoError"
           >
             {{ loading ? 'Enviando...' : 'Enviar' }}
           </UButton>
@@ -171,15 +161,12 @@ const tipoOptions = [
             block
             @click="$router.push('/acompanhar')"
           >
-            Acompanhar Manifestação
+            Acompanhar Manifestacao
           </UButton>
-
         </div>
-
       </form>
     </div>
 
-    <!-- Toast -->
     <div
       v-if="toast.show"
       class="fixed bottom-5 left-1/2 -translate-x-1/2 px-4 py-3 rounded-xl text-white text-sm"
@@ -187,6 +174,5 @@ const tipoOptions = [
     >
       {{ toast.message }}
     </div>
-
   </div>
 </template>

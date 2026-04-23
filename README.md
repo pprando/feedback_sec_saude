@@ -46,13 +46,13 @@ pnpm install
 ```
 
 3. Crie um arquivo `.env` na raiz do projeto com base no `.env.example`.
-4. Suba o banco de dados:
+4. Suba a aplicacao e o banco de dados:
 
 ```bash
-docker compose up -d
+docker compose up --build
 ```
 
-5. Inicie a aplicacao:
+5. Se preferir rodar apenas a app fora do Docker, use:
 
 ```bash
 pnpm dev
@@ -68,9 +68,14 @@ Exemplo de configuracao local:
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=sua_senha
 POSTGRES_DB=feedback_db
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
 
 DATABASE_URL=postgresql://postgres:sua_senha@localhost:5432/feedback_db
 ```
+
+Se a aplicacao estiver rodando fora do Docker, `POSTGRES_HOST=localhost` costuma funcionar.
+Se o Nuxt estiver dentro de um container no mesmo `docker-compose`, use o nome do servico do banco como host.
 
 ## Banco de dados
 

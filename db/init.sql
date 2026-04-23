@@ -1,6 +1,9 @@
 CREATE TABLE IF NOT EXISTS feedbacks (
   id SERIAL PRIMARY KEY,
   tipo VARCHAR(50) NOT NULL,
+  regiao VARCHAR(100) NOT NULL,
+  unidade VARCHAR(255) NOT NULL,
+  nota INTEGER NOT NULL DEFAULT 0,
   descricao TEXT NOT NULL,
   nome VARCHAR(255),
   telefone VARCHAR(50),

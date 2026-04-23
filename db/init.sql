@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS feedbacks (
+  id SERIAL PRIMARY KEY,
+  tipo VARCHAR(50) NOT NULL,
+  descricao TEXT NOT NULL,
+  nome VARCHAR(255),
+  telefone VARCHAR(50),
+  email VARCHAR(255),
+  anonimo BOOLEAN NOT NULL DEFAULT FALSE,
+  protocolo VARCHAR(50) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);

@@ -1,14 +1,24 @@
 import { Client } from 'pg'
 
 export default defineEventHandler(async (event) => {
+  const connectionString = process.env.DATABASE_URL
+
+  if (!connectionString) {
+    setResponseStatus(event, 500)
+    return {
+      success: false,
+      message: 'DATABASE_URL nao configurada'
+    }
+  }
+
+  const client = new Client({
+    connectionString
+  })
+
   try {
     const body = await readBody(event)
 
     const protocolo = `FB-${Date.now()}`
-
-    const client = new Client({
-      connectionString: process.env.DATABASE_URL
-    })
 
     await client.connect()
 
@@ -27,8 +37,6 @@ export default defineEventHandler(async (event) => {
       ]
     )
 
-    await client.end()
-
     return {
       success: true,
       protocolo
@@ -36,8 +44,12 @@ export default defineEventHandler(async (event) => {
 
   } catch (error) {
     console.error(error)
+    setResponseStatus(event, 500)
     return {
-      success: false
+      success: false,
+      message: 'Erro ao salvar feedback'
     }
+  } finally {
+    await client.end().catch(() => {})
   }
 })

@@ -46,8 +46,7 @@ useSeoMeta({
     <!-- Footer -->
     <footer class="mt-8 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
       <div class="max-w-4xl mx-auto px-4 py-6 text-center text-sm text-slate-600 dark:text-slate-400">
-        <p>Prefeitura de Domingos Martins - Secretaria de Saúde</p>
-        <p class="mt-1">© {{ new Date().getFullYear() }} Todos os direitos reservados</p>
+        <p>Realizado por Gerência CPD - Secretaria de Saúde PMDM</p>
       </div>
     </footer>
   </div>

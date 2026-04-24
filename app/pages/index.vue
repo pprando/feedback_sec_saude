@@ -194,7 +194,7 @@ const enviar = async () => {
     return
   }
 
-  if (!validarTelefone(form.telefone)) {
+  if (!form.anonimo && !validarTelefone(form.telefone)) {
     showToast('Telefone invalido. Use um celular brasileiro no formato (XX) 9XXXX-XXXX', 'error')
     return
   }
@@ -300,14 +300,7 @@ watch(() => form.regiao, () => {
               Unidade / Local
             </label>
 
-            <UInput
-              ref="buscaUnidadeInput"
-              v-model="buscaUnidade"
-              icon="i-lucide-search"
-              placeholder="Buscar unidade na regiao escolhida"
-              size="lg"
-              :disabled="!form.regiao"
-            />
+         
 
             <select
               :value="form.unidade ? `${form.regiao}::${form.unidade}` : ''"
@@ -371,7 +364,7 @@ watch(() => form.regiao, () => {
               if (!/^[0-9]$/.test(event.key)) event.preventDefault()
             }"
           />
-          
+
           <UInput v-model="form.email" placeholder="Email" />
         </div>
 

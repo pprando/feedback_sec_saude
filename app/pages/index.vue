@@ -442,9 +442,15 @@ watch(() => form.regiao, () => {
             Enviado com sucesso
           </p>
           <h2 class="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
-            Seu protocolo
+            Obrigado pela sua contribuicao!
           </h2>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+            Sua manifestacao foi registrada com sucesso. Sua participacao ajuda a melhorar nossos servicos.
+          </p>
+          <p class="mt-3 text-base font-semibold text-slate-900 dark:text-white">
+            Seu protocolo
+          </p>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
             Anote ou copie esse codigo para consultar o status depois.
           </p>
 

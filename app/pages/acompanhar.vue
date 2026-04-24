@@ -18,17 +18,17 @@ const erro = ref('')
 const copiado = ref(false)
 
 const tipoLabel: Record<string, string> = {
-  informacao: 'Informacao',
+  informacao: 'Informação',
   elogio: 'Elogio',
-  sugestao: 'Sugestao',
-  reclamacao: 'Reclamacao'
+  sugestao: 'Sugestão',
+  reclamacao: 'Reclamação'
 }
 
 const buscar = async () => {
   const valor = protocolo.value.trim().toUpperCase()
 
   if (!valor) {
-    erro.value = 'Informe um protocolo valido.'
+    erro.value = 'Informe um protocolo válido.'
     resultado.value = null
     return
   }
@@ -45,10 +45,10 @@ const buscar = async () => {
     if (response.success && response.feedback) {
       resultado.value = response.feedback
     } else {
-      erro.value = response.message || 'Nao foi possivel localizar a manifestacao.'
+      erro.value = response.message || 'Não foi possível localizar a manifestação.'
     }
   } catch (error: any) {
-    erro.value = error?.data?.message || error?.message || 'Nao foi possivel consultar o protocolo.'
+    erro.value = error?.data?.message || error?.message || 'Não foi possível consultar o protocolo.'
   } finally {
     loading.value = false
   }
@@ -86,7 +86,7 @@ const formatoData = computed(() => {
             Consulte o status do seu envio
           </h1>
           <p class="mt-3 text-slate-600 dark:text-slate-400 max-w-2xl">
-            Digite o protocolo recebido para visualizar a confirmacao e os dados do envio.
+            Digite o protocolo recebido para visualizar a confirmação e os dados do envio.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ const formatoData = computed(() => {
         </form>
 
         <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">
-          O protocolo normalmente comeca com <span class="font-medium">FB-</span>.
+          O protocolo normalmente começa com <span class="font-medium">FB-</span>.
         </p>
       </div>
 
@@ -180,23 +180,23 @@ const formatoData = computed(() => {
           </div>
 
           <div class="rounded-2xl bg-white/80 dark:bg-slate-900/70 p-4 sm:col-span-2">
-            <p class="text-xs uppercase tracking-wider text-slate-500">Descricao</p>
+            <p class="text-xs uppercase tracking-wider text-slate-500">Descrição</p>
             <p class="mt-1 leading-relaxed whitespace-pre-line">
               {{ resultado.descricao }}
             </p>
           </div>
 
           <div class="rounded-2xl bg-white/80 dark:bg-slate-900/70 p-4">
-            <p class="text-xs uppercase tracking-wider text-slate-500">Identificacao</p>
+            <p class="text-xs uppercase tracking-wider text-slate-500">Identificação</p>
             <p class="mt-1 font-semibold">
-              {{ resultado.anonimo ? 'Anonima' : 'Identificada' }}
+              {{ resultado.anonimo ? 'Anônima' : 'Identificada' }}
             </p>
           </div>
 
           <div class="rounded-2xl bg-white/80 dark:bg-slate-900/70 p-4">
             <p class="text-xs uppercase tracking-wider text-slate-500">Contato</p>
             <p class="mt-1 font-semibold">
-              {{ resultado.anonimo ? 'Nao informado' : (resultado.nome || 'Nao informado') }}
+              {{ resultado.anonimo ? 'Não informado' : (resultado.nome || 'Não informado') }}
             </p>
             <p v-if="!resultado.anonimo" class="mt-1 text-sm text-slate-500 dark:text-slate-400">
               O atendimento pode usar esse contato para retornar.
@@ -206,10 +206,10 @@ const formatoData = computed(() => {
 
         <div class="mt-6 rounded-2xl border border-white/60 dark:border-slate-700 bg-white/70 dark:bg-slate-900/60 p-4">
           <p class="text-sm font-semibold text-slate-900 dark:text-white">
-            Proximo passo
+            Próximo passo
           </p>
           <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
-            O protocolo serve como comprovante do registro. Guarde este codigo para futuras consultas.
+            O protocolo serve como comprovante do registro. Guarde este código para futuras consultas.
           </p>
         </div>
       </div>

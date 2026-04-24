@@ -34,14 +34,14 @@ const showToast = (message: string, type: 'success' | 'error' = 'success') => {
 
 const descricaoError = computed(() => {
   if (form.descricao && form.descricao.length > 500) {
-    return 'Maximo 500 caracteres'
+    return 'Máximo 500 caracteres'
   }
   return ''
 })
 
 const unidadeError = computed(() => {
   if (!form.regiao || !form.unidade) {
-    return 'Selecione a regiao e a unidade.'
+    return 'Selecione a região e a unidade.'
   }
   return ''
 })
@@ -58,69 +58,69 @@ const regioes = [
   {
     label: 'SEDE',
     unidades: [
-      'CENTRO MUNICIPAL DE SAUDE DR HUMBERTO SALEME DO VALLE',
-      'UNIDADE DE VIGILANCIA EM SAUDE DE DOMINGOS MARTINS',
-      'UNIDADE DE ASSISTENCIA FARMACEUTICA MUNICIPAL DE D. MARTINS',
+      'CENTRO MUNICIPAL DE SAÚDE DR HUMBERTO SALEME DO VALLE',
+      'UNIDADE DE VIGILÂNCIA EM SAÚDE DE DOMINGOS MARTINS',
+      'UNIDADE DE ASSISTÊNCIA FARMACÊUTICA MUNICIPAL DE D. MARTINS',
       'CENTRO DE FISIOTERAPIA MUNICIPAL DE DOMINGOS MARTINS',
-      'UNIDADE DE REFERENCIA EM SAUDE MENTAL DE DOMINGOS MARTINS',
-      'SECRETARIA MUNICIPAL DE SAUDE DE DOMINGOS MARTINS',
-      'CLINICA ODONTOLOGICA SEDE'
+      'UNIDADE DE REFERÊNCIA EM SAÚDE MENTAL DE DOMINGOS MARTINS',
+      'SECRETARIA MUNICIPAL DE SAÚDE DE DOMINGOS MARTINS',
+      'CLÍNICA ODONTOLÓGICA SEDE'
     ]
   },
   {
-    label: 'MELGACO',
+    label: 'MELGAÇO',
     unidades: [
-      'UNIDADE DE SAUDE DE MELGACO',
-      'UNIDADE DE SAUDE JARDEL HAESE',
+      'UNIDADE DE SAÚDE DE MELGAÇO',
+      'UNIDADE DE SAÚDE JARDEL HAESE',
       'POSTO DE ATENDIMENTO FAZENDA GERMANO SCHWANZ'
     ]
   },
   {
     label: 'PARAJU',
     unidades: [
-      'UNIDADE DE SAUDE DA FAMILIA DE PARAJU',
-      'UNIDADE DE SAUDE DE ALTO PARAJU'
+      'UNIDADE DE SAÚDE DA FAMÍLIA DE PARAJU',
+      'UNIDADE DE SAÚDE DE ALTO PARAJU'
     ]
   },
   {
     label: 'PONTO ALTO',
     unidades: [
-      'UNIDADE DE SAUDE JOAQUIM TESCH',
-      'UNIDADE DE SAUDE DE PONTO ALTO'
+      'UNIDADE DE SAÚDE JOAQUIM TESCH',
+      'UNIDADE DE SAÚDE DE PONTO ALTO'
     ]
   },
   {
     label: 'TIJUCO PRETO',
     unidades: [
-      'UNIDADE DE SAUDE DE ALTO TIJUCO PRETO',
-      'UNIDADE DE SAUDE DE TIJUCO PRETO',
-      'UNIDADE DE SAUDE DE SAO RAFAEL'
+      'UNIDADE DE SAÚDE DE ALTO TIJUCO PRETO',
+      'UNIDADE DE SAÚDE DE TIJUCO PRETO',
+      'UNIDADE DE SAÚDE DE SÃO RAFAEL'
     ]
   },
   {
     label: 'PEDRA AZUL',
     unidades: [
-      'UNIDADE DE SAUDE DA FAMILIA DE PEDRA AZUL',
-      'UNIDADE DE SAUDE PAUL VOLGT'
+      'UNIDADE DE SAÚDE DA FAMÍLIA DE PEDRA AZUL',
+      'UNIDADE DE SAÚDE PAUL VOLGT'
     ]
   },
   {
     label: 'SANTA ISABEL',
     unidades: [
-      'UNIDADE DE SAUDE LEONOR GOMES CAMPOS'
+      'UNIDADE DE SAÚDE LEONOR GOMES CAMPOS'
     ]
   },
   {
     label: 'BIRIRICAS',
     unidades: [
-      'UNIDADE DE SAUDE DE BIRIRICAS'
+      'UNIDADE DE SAÚDE DE BIRIRICAS'
     ]
   },
   {
     label: 'BARCELOS',
     unidades: [
-      'UNIDADE DE SAUDE ADOLPHO PIZZOL',
-      'POSTO DE SAUDE DE CRISTO REI'
+      'UNIDADE DE SAÚDE ADOLPHO PIZZOL',
+      'POSTO DE SAÚDE DE CRISTO REI'
     ]
   }
 ]
@@ -195,12 +195,12 @@ const copiarProtocolo = async () => {
 
 const enviar = async () => {
   if (!form.descricao || form.descricao.trim() === '') {
-    showToast('Preencha a descricao', 'error')
+    showToast('Preencha a descrição', 'error')
     return
   }
 
   if (!form.regiao || !form.unidade) {
-    showToast('Selecione a regiao e a unidade', 'error')
+    showToast('Selecione a região e a unidade', 'error')
     return
   }
 
@@ -210,7 +210,7 @@ const enviar = async () => {
   }
 
   if (!form.anonimo && !validarTelefone(form.telefone)) {
-    showToast('Telefone invalido. Use um celular brasileiro no formato (XX) 9XXXX-XXXX', 'error')
+    showToast('Telefone inválido. Use um celular brasileiro no formato (XX) 9XXXX-XXXX', 'error')
     return
   }
 
@@ -248,10 +248,10 @@ const enviar = async () => {
 }
 
 const tipoOptions = [
-  { label: 'Informacao', value: 'informacao', icon: 'i-lucide-info' },
+  { label: 'Informação', value: 'informacao', icon: 'i-lucide-info' },
   { label: 'Elogio', value: 'elogio', icon: 'i-lucide-star' },
-  { label: 'Sugestao', value: 'sugestao', icon: 'i-lucide-lightbulb' },
-  { label: 'Reclamacao', value: 'reclamacao', icon: 'i-lucide-alert-circle' }
+  { label: 'Sugestão', value: 'sugestao', icon: 'i-lucide-lightbulb' },
+  { label: 'Reclamação', value: 'reclamacao', icon: 'i-lucide-alert-circle' }
 ]
 
 watch(() => form.regiao, () => {
@@ -267,14 +267,14 @@ watch(() => form.regiao, () => {
           Manifeste-se
         </h1>
         <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
-          Sua opiniao e importante para nos. Compartilhe comentarios, sugestoes ou elogios sobre nossos servicos.
+          Sua opinião é importante para nós. Compartilhe comentários, sugestões ou elogios sobre nossos serviços.
         </p>
       </div>
 
       <form @submit.prevent="enviar" class="space-y-5 sm:space-y-6">
         <div>
           <label class="block text-sm font-semibold mb-3">
-            Tipo de Manifestacao
+            Tipo de Manifestação
           </label>
           <div class="grid grid-cols-2 gap-3 sm:gap-4">
             <button
@@ -300,12 +300,12 @@ watch(() => form.regiao, () => {
         <div class="space-y-4 sm:space-y-5">
           <div>
             <label class="block text-sm font-semibold mb-2">
-              Regiao
+              Região
             </label>
             <USelect
               v-model="form.regiao"
               :items="regiaoOptions"
-              placeholder="Selecione a regiao"
+              placeholder="Selecione a região"
               size="lg"
             />
           </div>
@@ -324,7 +324,7 @@ watch(() => form.regiao, () => {
               @change="onUnidadeChange"
             >
               <option value="" disabled>
-                {{ form.regiao ? 'Selecione a unidade' : 'Escolha uma regiao primeiro' }}
+                {{ form.regiao ? 'Selecione a unidade' : 'Escolha uma região primeiro' }}
               </option>
 
               <option
@@ -337,18 +337,18 @@ watch(() => form.regiao, () => {
             </select>
 
             <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
-              Escolha a regiao acima. Depois filtre ou role a lista para encontrar a unidade.
+              Escolha a região acima. Depois filtre ou role a lista para encontrar a unidade.
             </p>
           </div>
         </div>
 
         <div class="space-y-3">
           <label class="block text-sm font-semibold mb-2">
-            Descricao *
+            Descrição *
           </label>
           <textarea
             v-model="form.descricao"
-            placeholder="Descreva sua manifestacao..."
+            placeholder="Descreva sua manifestação..."
             class="w-full h-36 sm:h-32 p-4 rounded-xl border bg-white dark:bg-slate-900"
             maxlength="500"
           />
@@ -360,7 +360,7 @@ watch(() => form.regiao, () => {
         <div class="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 px-4 py-3">
           <UCheckbox v-model="form.anonimo" />
           <label class="text-sm">
-            Nao quero me identificar
+            Não quero me identificar
           </label>
         </div>
 
@@ -442,16 +442,16 @@ watch(() => form.regiao, () => {
             Enviado com sucesso
           </p>
           <h2 class="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
-            Obrigado pela sua contribuicao!
+            Obrigado pela sua contribuição!
           </h2>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-            Sua manifestacao foi registrada com sucesso. Sua participacao ajuda a melhorar nossos servicos.
+            Sua manifestação foi registrada com sucesso. Sua participação ajuda a melhorar nossos serviços.
           </p>
           <p class="mt-3 text-base font-semibold text-slate-900 dark:text-white">
             Seu protocolo
           </p>
           <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
-            Anote ou copie esse codigo para consultar o status depois.
+            Anote ou copie esse código para consultar o status depois.
           </p>
 
           <div class="mt-5 rounded-2xl border border-dashed border-green-300 dark:border-green-800 bg-green-50/70 dark:bg-green-950/20 px-4 py-4 text-center">

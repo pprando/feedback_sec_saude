@@ -49,14 +49,8 @@ const unidadeError = computed(() => {
 const notaOptions = Array.from({ length: 10 }, (_, index) => index + 1)
 
 const notaClass = (nota: number) => {
-  if (nota <= 3) {
-    return 'border-red-500 text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30'
-  }
-
-  if (nota <= 7) {
-    return 'border-amber-400 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/30'
-  }
-
+  if (nota <= 3) return 'border-red-500 text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30'
+  if (nota <= 7) return 'border-amber-400 text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/30'
   return 'border-emerald-500 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/30'
 }
 
@@ -64,61 +58,59 @@ const regioes = [
   {
     label: 'Sede',
     unidades: [
-      'POSTO SEDE CENTRO MUNICIPAL DE SAÚDE DR. HUMBERTO SALEME DO VALLE',
-      'SECRETARIA MUNICIPAL DE SAÚDE DE DOMINGOS MARTINS',
-      'CLÍNICA ODONTOLÓGICA SEDE',
-      'UNIDADE DE ASSISTÊNCIA FARMACÊUTICA MUNICIPAL DE D. MARTINS',
-      'UNIDADE DE REFERÊNCIA EM SAÚDE MENTAL DE DOMINGOS MARTINS',
+      'POSTO SEDE CENTRO MUNICIPAL DE SAUDE DR. HUMBERTO SALEME DO VALLE',
+      'SECRETARIA MUNICIPAL DE SAUDE DE DOMINGOS MARTINS',
+      'CLINICA ODONTOLOGICA SEDE',
+      'UNIDADE DE ASSISTENCIA FARMACEUTICA MUNICIPAL DE D. MARTINS',
+      'UNIDADE DE REFERENCIA EM SAUDE MENTAL DE DOMINGOS MARTINS',
       'CENTRO DE FISIOTERAPIA MUNICIPAL DE DOMINGOS MARTINS',
-      'UNIDADE DE VIGILÂNCIA EM SAÚDE DE DOMINGOS MARTINS'
+      'UNIDADE DE VIGILANCIA EM SAUDE DE DOMINGOS MARTINS'
     ]
   },
   {
-    label: 'Região Pedra Azul / Aracê',
+    label: 'Regiao Pedra Azul / Arace',
     unidades: [
-      'UNIDADE DE SAÚDE DA FAMÍLIA DE PEDRA AZUL',
+      'UNIDADE DE SAUDE DA FAMILIA DE PEDRA AZUL',
       'POSTO DE ATENDIMENTO FAZENDA GERMANO SCHWANZ'
     ]
   },
   {
-    label: 'Região Paraju',
+    label: 'Regiao Paraju',
     unidades: [
-      'UNIDADE DE SAÚDE DA FAMÍLIA DE PARAJU',
-      'UNIDADE DE SAÚDE DE ALTO PARAJU'
+      'UNIDADE DE SAUDE DA FAMILIA DE PARAJU',
+      'UNIDADE DE SAUDE DE ALTO PARAJU'
     ]
   },
   {
-    label: 'Região Tijuco Preto',
+    label: 'Regiao Tijuco Preto',
     unidades: [
-      'UNIDADE DE SAÚDE DE TIJUCO PRETO',
-      'UNIDADE DE SAÚDE DE ALTO TIJUCO PRETO'
+      'UNIDADE DE SAUDE DE TIJUCO PRETO',
+      'UNIDADE DE SAUDE DE ALTO TIJUCO PRETO'
     ]
   },
   {
-    label: 'Região Interior / Rural',
+    label: 'Regiao Interior / Rural',
     unidades: [
-      'UNIDADE DE SAÚDE DE MELGAÇO',
-      'UNIDADE DE SAÚDE DE PONTO ALTO',
-      'UNIDADE DE SAÚDE DE SÃO RAFAEL',
-      'UNIDADE DE SAÚDE DE BIRIRICAS',
-      'POSTO DE SAÚDE DE CRISTO REI'
+      'UNIDADE DE SAUDE DE MELGACO',
+      'UNIDADE DE SAUDE DE PONTO ALTO',
+      'UNIDADE DE SAUDE DE SAO RAFAEL',
+      'UNIDADE DE SAUDE DE BIRIRICAS',
+      'POSTO DE SAUDE DE CRISTO REI'
     ]
   },
   {
     label: 'Outras Unidades',
     unidades: [
-      'UNIDADE DE SAÚDE JOAQUIM TESCH',
-      'UNIDADE DE SAÚDE LEONOR GOMES CAMPOS',
-      'UNIDADE DE SAÚDE PAUL VOLGT',
-      'UNIDADE DE SAÚDE JARDEL HAESE',
-      'UNIDADE DE SAÚDE ADOLPHO PIZZOL'
+      'UNIDADE DE SAUDE JOAQUIM TESCH',
+      'UNIDADE DE SAUDE LEONOR GOMES CAMPOS',
+      'UNIDADE DE SAUDE PAUL VOLGT',
+      'UNIDADE DE SAUDE JARDEL HAESE',
+      'UNIDADE DE SAUDE ADOLPHO PIZZOL'
     ]
   }
 ]
 
-const regiaoAtiva = computed(() => {
-  return regioes.find(regiao => regiao.label === form.regiao) || null
-})
+const regiaoAtiva = computed(() => regioes.find(regiao => regiao.label === form.regiao) || null)
 
 const regiaoOptions = regioes.map(regiao => ({
   label: regiao.label,
@@ -129,7 +121,6 @@ const unidadesFiltradas = computed(() => {
   if (!regiaoAtiva.value) return []
 
   const termo = buscaUnidade.value.trim().toLowerCase()
-
   if (!termo) return regiaoAtiva.value.unidades
 
   return regiaoAtiva.value.unidades.filter(unidade =>
@@ -153,24 +144,6 @@ const onUnidadeChange = (event: Event) => {
   selecionarUnidade((event.target as HTMLSelectElement).value)
 }
 
-const selecionarRegiao = (regiao: string) => {
-  if (form.regiao === regiao) return
-
-  form.regiao = regiao
-  form.unidade = ''
-  buscaUnidade.value = ''
-
-  nextTick(() => {
-    buscaUnidadeInput.value?.focus?.()
-  })
-}
-
-const limparRegiao = () => {
-  form.regiao = ''
-  form.unidade = ''
-  buscaUnidade.value = ''
-}
-
 const fecharModalProtocolo = () => {
   protocoloModal.value.show = false
   protocoloModal.value.protocolo = ''
@@ -184,9 +157,6 @@ const copiarProtocolo = async () => {
 }
 
 const enviar = async () => {
-  console.log('enviar acionado')
-  console.log('form atual:', { ...form })
-
   if (!form.descricao || form.descricao.trim() === '') {
     showToast('Preencha a descricao', 'error')
     return
@@ -207,12 +177,8 @@ const enviar = async () => {
 
     const response = await $fetch<{ success: boolean; protocolo?: string; message?: string }>('/api/feedback', {
       method: 'POST',
-      body: {
-        ...form
-      }
+      body: { ...form }
     })
-
-    console.log('resposta da API:', response)
 
     if (response.success) {
       protocoloModal.value = {
@@ -233,7 +199,6 @@ const enviar = async () => {
       showToast(response.message || 'Erro ao salvar', 'error')
     }
   } catch (error: any) {
-    console.error(error)
     showToast(error?.data?.message || error?.message || 'Erro ao enviar', 'error')
   } finally {
     loading.value = false
@@ -247,12 +212,9 @@ const tipoOptions = [
   { label: 'Reclamacao', value: 'reclamacao', icon: 'i-lucide-alert-circle' }
 ]
 
-watch(
-  () => form.regiao,
-  () => {
-    form.unidade = ''
-  }
-)
+watch(() => form.regiao, () => {
+  form.unidade = ''
+})
 </script>
 
 <template>
@@ -267,7 +229,7 @@ watch(
         </p>
       </div>
 
-      <form @submit.prevent="enviar" class="space-y-6">
+      <form @submit.prevent="enviar" class="space-y-5 sm:space-y-6">
         <div>
           <label class="block text-sm font-semibold mb-3">
             Tipo de Manifestacao
@@ -293,7 +255,7 @@ watch(
           </div>
         </div>
 
-        <div class="space-y-4">
+        <div class="space-y-4 sm:space-y-5">
           <div>
             <label class="block text-sm font-semibold mb-2">
               Regiao
@@ -302,10 +264,7 @@ watch(
               v-model="form.regiao"
               :items="regiaoOptions"
               placeholder="Selecione a regiao"
-              @update:model-value="() => {
-                form.unidade = ''
-                buscaUnidade = ''
-              }"
+              size="lg"
             />
           </div>
 
@@ -318,18 +277,19 @@ watch(
               ref="buscaUnidadeInput"
               v-model="buscaUnidade"
               icon="i-lucide-search"
-              placeholder="Buscar unidade na região escolhida"
+              placeholder="Buscar unidade na regiao escolhida"
+              size="lg"
               :disabled="!form.regiao"
             />
 
             <select
               :value="form.unidade ? `${form.regiao}::${form.unidade}` : ''"
-              class="mt-3 w-full min-h-12 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm shadow-sm disabled:opacity-60"
+              class="mt-3 w-full min-h-12 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-3 text-sm shadow-sm disabled:opacity-60"
               :disabled="!form.regiao"
               @change="onUnidadeChange"
             >
               <option value="" disabled>
-                {{ form.regiao ? 'Selecione a unidade' : 'Escolha uma região primeiro' }}
+                {{ form.regiao ? 'Selecione a unidade' : 'Escolha uma regiao primeiro' }}
               </option>
 
               <option
@@ -342,19 +302,19 @@ watch(
             </select>
 
             <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
-              Escolha a região acima. Depois filtre ou role a lista para encontrar a unidade.
+              Escolha a regiao acima. Depois filtre ou role a lista para encontrar a unidade.
             </p>
           </div>
         </div>
 
-        <div>
+        <div class="space-y-3">
           <label class="block text-sm font-semibold mb-2">
             Descricao *
           </label>
           <textarea
             v-model="form.descricao"
             placeholder="Descreva sua manifestacao..."
-            class="w-full h-32 p-4 rounded-lg border bg-white dark:bg-slate-900"
+            class="w-full h-36 sm:h-32 p-4 rounded-xl border bg-white dark:bg-slate-900"
             maxlength="500"
           />
           <div class="text-xs text-slate-500 mt-1">
@@ -362,25 +322,31 @@ watch(
           </div>
         </div>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 px-4 py-3">
           <UCheckbox v-model="form.anonimo" />
           <label class="text-sm">
             Nao quero me identificar
           </label>
         </div>
 
-        <div>
+        <div v-if="!form.anonimo" class="space-y-3 sm:space-y-4">
+          <UInput v-model="form.nome" placeholder="Nome" />
+          <UInput v-model="form.telefone" placeholder="Telefone" />
+          <UInput v-model="form.email" placeholder="Email" />
+        </div>
+
+        <div class="space-y-3">
           <label class="block text-sm font-semibold mb-3">
             Nota
           </label>
-          <div class="flex flex-wrap gap-2 sm:gap-2.5">
+          <div class="grid grid-cols-5 gap-2 sm:gap-2.5">
             <button
               v-for="nota in notaOptions"
               :key="nota"
               type="button"
               @click="form.nota = nota"
               :class="[
-                'h-11 w-11 sm:h-12 sm:w-12 rounded-full border-2 text-sm font-bold transition-all duration-200 flex items-center justify-center bg-white dark:bg-slate-900',
+                'h-11 w-full rounded-full border-2 text-sm font-bold transition-all duration-200 flex items-center justify-center bg-white dark:bg-slate-900 touch-manipulation',
                 form.nota === nota
                   ? `${notaClass(nota)} ring-2 ring-offset-2 ring-offset-white dark:ring-offset-slate-950`
                   : 'border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500'
@@ -389,18 +355,12 @@ watch(
               {{ nota }}
             </button>
           </div>
-          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+          <p class="text-xs text-slate-500 dark:text-slate-400">
             Selecione uma nota de 1 a 10 para avaliar o atendimento.
           </p>
         </div>
 
-        <div v-if="!form.anonimo" class="space-y-4">
-          <UInput v-model="form.nome" placeholder="Nome" />
-          <UInput v-model="form.telefone" placeholder="Telefone" />
-          <UInput v-model="form.email" placeholder="Email" />
-        </div>
-
-        <div class="flex flex-col gap-3 pt-4">
+        <div class="flex flex-col gap-3 pt-3 sm:pt-4 pb-2 sm:pb-0">
           <UButton
             type="submit"
             block
@@ -450,19 +410,10 @@ watch(
           </div>
 
           <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-            <UButton
-              block
-              icon="i-lucide-copy"
-              @click="copiarProtocolo"
-            >
+            <UButton block icon="i-lucide-copy" @click="copiarProtocolo">
               Copiar protocolo
             </UButton>
-            <UButton
-              block
-              variant="soft"
-              color="neutral"
-              @click="fecharModalProtocolo"
-            >
+            <UButton block variant="soft" color="neutral" @click="fecharModalProtocolo">
               Fechar
             </UButton>
           </div>
@@ -481,28 +432,6 @@ watch(
 </template>
 
 <style scoped>
-.regiao-enter-active,
-.regiao-leave-active {
-  transition: all 180ms ease;
-}
-
-.regiao-enter-from,
-.regiao-leave-to {
-  opacity: 0;
-  transform: translateY(6px);
-}
-
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition: opacity 180ms ease, transform 180ms ease;
-}
-
-.fade-slide-enter-from,
-.fade-slide-leave-to {
-  opacity: 0;
-  transform: translateY(8px);
-}
-
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 180ms ease;

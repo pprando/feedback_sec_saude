@@ -80,24 +80,24 @@ const formatoData = computed(() => {
       <div class="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] items-start mb-8">
         <div>
           <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
-            Acompanhamento
+            Status
           </p>
           <h1 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight">
-            Consulte sua manifestacao
+            Consulte o status do seu envio
           </h1>
           <p class="mt-3 text-slate-600 dark:text-slate-400 max-w-2xl">
-            Digite o protocolo recebido no envio para verificar os dados da sua manifestacao.
+            Digite o protocolo recebido para visualizar a confirmacao e os dados do envio.
           </p>
         </div>
 
         <div class="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur p-5 shadow-sm">
           <p class="text-sm font-semibold text-slate-900 dark:text-white">
-            Como acompanhar
+            Como consultar o status
           </p>
           <ol class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-400">
             <li>1. Localize o protocolo enviado no momento do registro.</li>
             <li>2. Cole o código no campo abaixo.</li>
-            <li>3. Consulte para ver o andamento da demanda.</li>
+            <li>3. Consulte para ver o status do envio.</li>
           </ol>
         </div>
       </div>
@@ -129,13 +129,13 @@ const formatoData = computed(() => {
         <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p class="text-sm font-semibold text-emerald-700 dark:text-emerald-300">
-              Manifestacao localizada
+              Envio localizado
             </p>
             <h2 class="mt-1 text-2xl font-bold text-slate-900 dark:text-white">
               Protocolo {{ resultado.protocolo }}
             </h2>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-              Sua manifestacao foi registrada com sucesso e segue para analise interna.
+              Seu envio foi registrado com sucesso. Esta tela serve para confirmar os dados informados.
             </p>
           </div>
           <div class="flex flex-col items-start gap-2">
@@ -161,7 +161,7 @@ const formatoData = computed(() => {
               Recebida
             </p>
             <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-              A equipe responsavel ja pode localizar sua demanda.
+              Registro localizado no sistema com esse protocolo.
             </p>
           </div>
 

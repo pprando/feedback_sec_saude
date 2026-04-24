@@ -56,56 +56,71 @@ const notaClass = (nota: number) => {
 
 const regioes = [
   {
-    label: 'Sede',
+    label: 'SEDE',
     unidades: [
-      'POSTO SEDE CENTRO MUNICIPAL DE SAUDE DR. HUMBERTO SALEME DO VALLE',
-      'SECRETARIA MUNICIPAL DE SAUDE DE DOMINGOS MARTINS',
-      'CLINICA ODONTOLOGICA SEDE',
+      'CENTRO MUNICIPAL DE SAUDE DR HUMBERTO SALEME DO VALLE',
+      'UNIDADE DE VIGILANCIA EM SAUDE DE DOMINGOS MARTINS',
       'UNIDADE DE ASSISTENCIA FARMACEUTICA MUNICIPAL DE D. MARTINS',
-      'UNIDADE DE REFERENCIA EM SAUDE MENTAL DE DOMINGOS MARTINS',
       'CENTRO DE FISIOTERAPIA MUNICIPAL DE DOMINGOS MARTINS',
-      'UNIDADE DE VIGILANCIA EM SAUDE DE DOMINGOS MARTINS'
+      'UNIDADE DE REFERENCIA EM SAUDE MENTAL DE DOMINGOS MARTINS',
+      'SECRETARIA MUNICIPAL DE SAUDE DE DOMINGOS MARTINS',
+      'CLINICA ODONTOLOGICA SEDE'
     ]
   },
   {
-    label: 'Regiao Pedra Azul / Arace',
+    label: 'MELGACO',
     unidades: [
-      'UNIDADE DE SAUDE DA FAMILIA DE PEDRA AZUL',
+      'UNIDADE DE SAUDE DE MELGACO',
+      'UNIDADE DE SAUDE JARDEL HAESE',
       'POSTO DE ATENDIMENTO FAZENDA GERMANO SCHWANZ'
     ]
   },
   {
-    label: 'Regiao Paraju',
+    label: 'PARAJU',
     unidades: [
       'UNIDADE DE SAUDE DA FAMILIA DE PARAJU',
       'UNIDADE DE SAUDE DE ALTO PARAJU'
     ]
   },
   {
-    label: 'Regiao Tijuco Preto',
-    unidades: [
-      'UNIDADE DE SAUDE DE TIJUCO PRETO',
-      'UNIDADE DE SAUDE DE ALTO TIJUCO PRETO'
-    ]
-  },
-  {
-    label: 'Regiao Interior / Rural',
-    unidades: [
-      'UNIDADE DE SAUDE DE MELGACO',
-      'UNIDADE DE SAUDE DE PONTO ALTO',
-      'UNIDADE DE SAUDE DE SAO RAFAEL',
-      'UNIDADE DE SAUDE DE BIRIRICAS',
-      'POSTO DE SAUDE DE CRISTO REI'
-    ]
-  },
-  {
-    label: 'Outras Unidades',
+    label: 'PONTO ALTO',
     unidades: [
       'UNIDADE DE SAUDE JOAQUIM TESCH',
-      'UNIDADE DE SAUDE LEONOR GOMES CAMPOS',
-      'UNIDADE DE SAUDE PAUL VOLGT',
-      'UNIDADE DE SAUDE JARDEL HAESE',
-      'UNIDADE DE SAUDE ADOLPHO PIZZOL'
+      'UNIDADE DE SAUDE DE PONTO ALTO'
+    ]
+  },
+  {
+    label: 'TIJUCO PRETO',
+    unidades: [
+      'UNIDADE DE SAUDE DE ALTO TIJUCO PRETO',
+      'UNIDADE DE SAUDE DE TIJUCO PRETO',
+      'UNIDADE DE SAUDE DE SAO RAFAEL'
+    ]
+  },
+  {
+    label: 'PEDRA AZUL',
+    unidades: [
+      'UNIDADE DE SAUDE DA FAMILIA DE PEDRA AZUL',
+      'UNIDADE DE SAUDE PAUL VOLGT'
+    ]
+  },
+  {
+    label: 'SANTA ISABEL',
+    unidades: [
+      'UNIDADE DE SAUDE LEONOR GOMES CAMPOS'
+    ]
+  },
+  {
+    label: 'BIRIRICAS',
+    unidades: [
+      'UNIDADE DE SAUDE DE BIRIRICAS'
+    ]
+  },
+  {
+    label: 'BARCELOS',
+    unidades: [
+      'UNIDADE DE SAUDE ADOLPHO PIZZOL',
+      'POSTO DE SAUDE DE CRISTO REI'
     ]
   }
 ]
@@ -409,7 +424,7 @@ watch(() => form.regiao, () => {
             block
             @click="$router.push('/acompanhar')"
           >
-            Acompanhar Manifestacao
+            Ver Status do Envio
           </UButton>
         </div>
       </form>
@@ -430,7 +445,7 @@ watch(() => form.regiao, () => {
             Seu protocolo
           </h2>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-            Anote ou copie esse codigo para acompanhar depois.
+            Anote ou copie esse codigo para consultar o status depois.
           </p>
 
           <div class="mt-5 rounded-2xl border border-dashed border-green-300 dark:border-green-800 bg-green-50/70 dark:bg-green-950/20 px-4 py-4 text-center">

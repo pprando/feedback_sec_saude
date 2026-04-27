@@ -204,14 +204,6 @@ const formatoData = computed(() => {
           </div>
         </div>
 
-        <div class="mt-6 rounded-2xl border border-white/60 dark:border-slate-700 bg-white/70 dark:bg-slate-900/60 p-4">
-          <p class="text-sm font-semibold text-slate-900 dark:text-white">
-            Próximo passo
-          </p>
-          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
-            O protocolo serve como comprovante do registro. Guarde este código para futuras consultas.
-          </p>
-        </div>
       </div>
     </div>
   </div>

@@ -15,10 +15,6 @@ export default defineNuxtConfig({
     classSuffix: ''
   },
 
-  ui: {
-    icons: ['lucide']
-  },
-
   routeRules: {
     '/': { prerender: true }
   },
